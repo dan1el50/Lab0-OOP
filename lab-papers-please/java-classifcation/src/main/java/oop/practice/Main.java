@@ -1,58 +1,25 @@
 package oop.practice;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 public class Main {
-  public static void main(String[] args) throws IOException {
-    ObjectMapper mapper = new ObjectMapper();
-    File inputFile = new File("src/main/resources/test-input.json");
-    JsonNode data = mapper.readTree(inputFile).get("data");
+  public static void main(String[] args){
+    String[] traits = {"BLONDE, TALL"};
+    Entity entity1 = new Entity(0, true, "Asgard", 2034, traits);
+    Entity entity2 = new Entity(0, null, "Asgard", 2034, traits);
+    Entity entity3 = new Entity(0, true, null, 2034, traits);
+    Entity entity4 = new Entity(0, true, "Asgard", null, traits);
+    Entity entity5 = new Entity(0, true, "Asgard", 2034, null);
 
-    Universe starWars = new Universe("starWars", new ArrayList<>());
-    Universe hitchhikers = new Universe("hitchHiker", new ArrayList<>());
-    Universe marvel = new Universe("marvel", new ArrayList<>());
-    Universe rings = new Universe("rings", new ArrayList<>());
+//    System.out.print("{ID: " + entity1.getId());
+//    System.out.print(", isHumanoid: " + entity1.isHumanoid());
+//    System.out.print(", Planet: " + entity1.getPlanet());
+//    System.out.print(", Age: " + entity1.getAge());
+//    System.out.print(", Traits: " + String.join(", ", entity1.getTraits()) + "}");
 
-    Scanner scanner = new Scanner(System.in);
+    entity1.PrintEntity();
+    entity2.PrintEntity();
+    entity3.PrintEntity();
+    entity4.PrintEntity();
+    entity5.PrintEntity();
 
-    for (JsonNode entry : data) {
-      String entryAsString = entry.toString();
-      System.out.println(entryAsString);
-      String userInput = scanner.nextLine();
-      switch (userInput) {
-        case "1":
-          starWars.individuals().add(entry);
-          break;
-        case "2":
-          hitchhikers.individuals().add(entry);
-          break;
-        case "3":
-          marvel.individuals().add(entry);
-          break;
-        case "4":
-          rings.individuals().add(entry);
-          break;
-        default:
-          System.out.println("Invalid input");
-      }
-    }
-
-    scanner.close();
-    mapper.writeValue(new File("src/main/resources/output/starwars.json"), starWars);
-    mapper.writeValue(new File("src/main/resources/output/hitchhiker.json"), hitchhikers);
-    mapper.writeValue(new File("src/main/resources/output/rings.json"), rings);
-    mapper.writeValue(new File("src/main/resources/output/marvel.json"), marvel);
   }
 }
-
-record Universe(
-    String name,
-    List<JsonNode> individuals
-) { }
