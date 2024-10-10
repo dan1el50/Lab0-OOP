@@ -1,25 +1,42 @@
 package oop.practice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
   public static void main(String[] args){
-    String[] traits = {"BLONDE, TALL"};
-    Entity entity1 = new Entity(0, true, "Asgard", 2034, traits);
-    Entity entity2 = new Entity(0, null, "Asgard", 2034, traits);
-    Entity entity3 = new Entity(0, true, null, 2034, traits);
-    Entity entity4 = new Entity(0, true, "Asgard", null, traits);
-    Entity entity5 = new Entity(0, true, "Asgard", 2034, null);
 
-//    System.out.print("{ID: " + entity1.getId());
-//    System.out.print(", isHumanoid: " + entity1.isHumanoid());
-//    System.out.print(", Planet: " + entity1.getPlanet());
-//    System.out.print(", Age: " + entity1.getAge());
-//    System.out.print(", Traits: " + String.join(", ", entity1.getTraits()) + "}");
+    FileReader fileReader = new FileReader();
+    List<Individuals> individuals = fileReader.readIndividualsFromFile("src/main/resources/input.json");
 
-    entity1.PrintEntity();
-    entity2.PrintEntity();
-    entity3.PrintEntity();
-    entity4.PrintEntity();
-    entity5.PrintEntity();
+    StarWars starWarsIndividuals = new StarWars();
+    List<Individuals> classifiedAsStarWars = starWarsIndividuals.partOfStarWars(individuals);
 
+    System.out.println("Individuals from Earth: ");
+    for (Individuals individual : individuals){
+      if(individual.getPlanet().equals("Earth")){
+        individual.PrintIndividuals();
+      }
+    }
+
+    System.out.println("Individuals with age up to 500: ");
+    for (Individuals individual : individuals){
+      if (individual.getAge() <= 100){
+        individual.PrintIndividuals();
+      }
+    }
+
+    System.out.println("Individuals that are not humanoids and have the age up tp 100: ");
+    for (Individuals individual : individuals){
+      if (individual.getAge() <= 100 && !individual.isHumanoid()){
+        individual.PrintIndividuals();
+      }
+    }
+
+    // Print classified individuals
+    System.out.println("Classified Star Wars Individuals: ");
+    for (Individuals individual : classifiedAsStarWars) {
+      individual.PrintIndividuals();
+    }
   }
 }

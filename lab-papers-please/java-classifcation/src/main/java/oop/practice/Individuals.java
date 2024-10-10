@@ -2,36 +2,20 @@ package oop.practice;
 
 import java.util.Arrays;
 
-public class Entity {
+public class Individuals {
     private int id;
     private Boolean isHumanoid;
     private String planet;
     private Integer age;
     private String[] traits;
+    private String universe;
 
-    public Entity(int id, Boolean isHumanoid, String planet, Integer age, String[] traits){
+    public Individuals(int id, Boolean isHumanoid, String planet, Integer age, String[] traits) {
         this.id = id;
         this.isHumanoid = isHumanoid != null ? isHumanoid : false;
-        this.planet = planet != null ? planet : "";
+        this.planet = planet != null ? planet : "Unknown";
         this.age = age != null ? age : 0;
         this.traits = traits != null ? traits : new String[0];
-
-        HandleNullValues();
-    }
-
-    public void HandleNullValues(){
-        if(this.isHumanoid == null){
-            this.isHumanoid = false;
-        }
-        if(this.planet == null){
-            this.planet = "";
-        }
-        if(this.age == null){
-            this.age = 0;
-        }
-        if(this.traits == null){
-            this.traits = new String[0];
-        }
     }
 
     public int getId(){
@@ -54,7 +38,15 @@ public class Entity {
         return traits;
     }
 
-    public void PrintEntity(){
+    public String getUniverse() {
+        return universe;
+    }
+
+    public void setUniverse(String universe) {
+        this.universe = universe;
+    }
+
+    public void PrintIndividuals(){
         System.out.println("{ID: " + id + ", isHumanoid: " + isHumanoid + ", Planet: " + planet + ", Age: " + age + ", Traits: " + Arrays.toString(traits) + "}");
     }
 

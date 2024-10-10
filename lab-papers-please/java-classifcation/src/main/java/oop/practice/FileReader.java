@@ -5,9 +5,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FileReader{
-    public void readFile(String filePath) {
+
+    public List<Individuals> readIndividualsFromFile(String filePath) {
+        List<Individuals> listOfIndividuals = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
@@ -26,12 +30,13 @@ public class FileReader{
                 }
 
                 Individuals individual = new Individuals(id, isHumanoid, planet, age, traits);
-                individual.PrintIndividuals();
+                listOfIndividuals.add(individual);
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return listOfIndividuals;
     }
 
 }
