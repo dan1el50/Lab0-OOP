@@ -13,6 +13,9 @@ public class Main {
 
     MarvelUniverse marvelUniverseIndividuals = new MarvelUniverse();
     List<Individuals> classifiedAsMarvel = marvelUniverseIndividuals.partOfMarvelUniverse(individuals);
+
+    HitchhikerUniverse hitchhikerUniverseIndividuals = new HitchhikerUniverse();
+    List<Individuals> classifiedAsHitchhker = hitchhikerUniverseIndividuals.partOfHitchhikerUniverse(individuals);
     // Print classified individuals
     System.out.println("Classified Star Wars Universe Individuals: ");
     for (Individuals individual : classifiedAsStarWars) {
@@ -21,6 +24,11 @@ public class Main {
 
     System.out.println("Classified Marvel Universe Individuals: ");
     for (Individuals individual : classifiedAsMarvel) {
+      individual.PrintIndividuals();
+    }
+
+    System.out.println("Classified Hitchhiker's Universe Individuals: ");
+    for (Individuals individual : classifiedAsHitchhker) {
       individual.PrintIndividuals();
     }
   }

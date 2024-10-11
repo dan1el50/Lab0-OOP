@@ -18,7 +18,7 @@ public class MarvelUniverse {
         return partOfMarvelUniverse;
     }
 
-    public boolean hasFollowingTraits(String[] traits, String trait) {
+    public boolean containsSpecificTrait(String[] traits, String trait) {
         for(String i : traits){
             if(i.equals(trait)){
                 return true;
@@ -29,8 +29,8 @@ public class MarvelUniverse {
 
     public boolean isAsgardian(Individuals individual){
         return individual.isHumanoid() && individual.getPlanet().equals("Asgard") &&
-                individual.getAge() <= 5000 && hasFollowingTraits(individual.getTraits(), "BLONDE") &&
-                hasFollowingTraits(individual.getTraits(), "TALL");
+                individual.getAge() <= 5000 && containsSpecificTrait(individual.getTraits(), "BLONDE") &&
+                containsSpecificTrait(individual.getTraits(), "TALL");
     }
 
 
