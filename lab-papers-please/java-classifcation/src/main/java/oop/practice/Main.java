@@ -8,36 +8,27 @@ public class Main {
     FileReader fileReader = new FileReader();
     List<Individuals> individuals = fileReader.readIndividualsFromFile("src/main/resources/input.json");
 
-    StarWarsUniverse starWarsUniverseIndividuals = new StarWarsUniverse();
-    List<Individuals> classifiedAsStarWars = starWarsUniverseIndividuals.partOfStarWars(individuals);
+    StarWarsUniverse starWarsUniverse = new StarWarsUniverse();
+    MarvelUniverse marvelUniverse = new MarvelUniverse();
+    HitchhikerUniverse hitchhikerUniverse = new HitchhikerUniverse();
+    LordOfTheRingsUniverse lordOfTheRingsUniverse = new LordOfTheRingsUniverse();
 
-    MarvelUniverse marvelUniverseIndividuals = new MarvelUniverse();
-    List<Individuals> classifiedAsMarvel = marvelUniverseIndividuals.partOfMarvelUniverse(individuals);
-
-    HitchhikerUniverse hitchhikerUniverseIndividuals = new HitchhikerUniverse();
-    List<Individuals> classifiedAsHitchhker = hitchhikerUniverseIndividuals.partOfHitchhikerUniverse(individuals);
-
-    LordOfTheRingsUniverse lordOfTheRingsUniverseIndividuals = new LordOfTheRingsUniverse();
-    List<Individuals> classifiedAsLordOfTheRings = lordOfTheRingsUniverseIndividuals.partOfLordOfTheRingsUniverse(individuals);
-    // Print classified individuals
-    System.out.println("Classified Star Wars Universe Individuals: ");
-    for (Individuals individual : classifiedAsStarWars) {
-      individual.PrintIndividuals();
-    }
-
-    System.out.println("Classified Marvel Universe Individuals: ");
-    for (Individuals individual : classifiedAsMarvel) {
-      individual.PrintIndividuals();
-    }
-
-    System.out.println("Classified Hitchhiker's Universe Individuals: ");
-    for (Individuals individual : classifiedAsHitchhker) {
-      individual.PrintIndividuals();
-    }
-
-    System.out.println("Classified Lord of the rings Universe Individuals: ");
-    for (Individuals individual : classifiedAsLordOfTheRings) {
-      individual.PrintIndividuals();
+    for (Individuals individual : individuals){
+      if (starWarsUniverse.partOfStarWarsUniverse(individual)){
+        individual.setUniverse("Star Wars");
+        individual.PrintIndividualsByTheirUniverses();
+      } else if (marvelUniverse.partOfMarvelUniverse(individual)) {
+        individual.setUniverse("Marvel");
+        individual.PrintIndividualsByTheirUniverses();
+      } else if (hitchhikerUniverse.partOfHitchhikerUniverse(individual)) {
+        individual.setUniverse("Hitchhiker");
+        individual.PrintIndividualsByTheirUniverses();
+      } else if (lordOfTheRingsUniverse.partOfLordOfTheRingsUniverse(individual)) {
+        individual.setUniverse("Lord Of The Rings");
+        individual.PrintIndividualsByTheirUniverses();
+      } else {
+        System.out.println("Could not classify.");
+      }
     }
   }
 }

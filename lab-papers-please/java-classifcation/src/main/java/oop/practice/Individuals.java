@@ -12,10 +12,10 @@ public class Individuals {
 
     public Individuals(int id, Boolean isHumanoid, String planet, Integer age, String[] traits) {
         this.id = id;
-        this.isHumanoid = isHumanoid != null ? isHumanoid : false;
-        this.planet = planet != null ? planet : "Unknown";
-        this.age = age != null ? age : 0;
-        this.traits = traits != null ? traits : new String[0];
+        this.isHumanoid = isHumanoid;
+        this.planet = planet;
+        this.age = age;
+        this.traits = traits;
     }
 
     public int getId(){
@@ -48,6 +48,10 @@ public class Individuals {
 
     public void PrintIndividuals(){
         System.out.println("{ID: " + id + ", isHumanoid: " + isHumanoid + ", Planet: " + planet + ", Age: " + age + ", Traits: " + Arrays.toString(traits) + "}");
+    }
+
+    public void PrintIndividualsByTheirUniverses() {
+        System.out.println("ID: " + id + ", Universe: " + universe);
     }
 
 }

@@ -1,23 +1,9 @@
 package oop.practice;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class HitchhikerUniverse {
 
-    public List<Individuals> partOfHitchhikerUniverse(List<Individuals> individuals){
-        List<Individuals> partOfHitchhikerUniverse = new ArrayList<>();
-
-        for (Individuals individual : individuals){
-            if (isBetelgeusian(individual)){
-                individual.setUniverse("Hitchhiker's Universe (Betelgeusian)");
-                partOfHitchhikerUniverse.add(individual);
-            } else if (isVogons(individual)) {
-                individual.setUniverse("Hitchhiker's Universe (Vogons)");
-                partOfHitchhikerUniverse.add(individual);
-            }
-        }
-        return partOfHitchhikerUniverse;
+    public boolean partOfHitchhikerUniverse(Individuals individual){
+        return isBetelgeusian(individual) || isVogons(individual);
     }
 
     public boolean containsSpecificTrait(String[] traits, String trait){
@@ -30,14 +16,18 @@ public class HitchhikerUniverse {
     }
 
     public boolean isBetelgeusian(Individuals individual){
-        return individual.isHumanoid() && individual.getPlanet().equals("Betelgeuse") &&
-                individual.getAge() <= 100 && containsSpecificTrait(individual.getTraits(), "EXTRA_ARMS") &&
-                containsSpecificTrait(individual.getTraits(), "EXTRA_HEAD");
+        return (individual.isHumanoid() || !individual.isHumanoid())&&
+                ("Betelgeuse".equals(individual.getPlanet()) || individual.getPlanet().equals("Unknown")) &&
+                (individual.getAge() <= 100 || individual.getAge() == 0) &&
+                (containsSpecificTrait(individual.getTraits(), "EXTRA_ARMS") ||
+                containsSpecificTrait(individual.getTraits(), "EXTRA_HEAD"));
     }
 
     public boolean isVogons(Individuals individual){
-        return !individual.isHumanoid() && individual.getPlanet().equals("Vogsphere") &&
-                individual.getAge() <= 200 && containsSpecificTrait(individual.getTraits(), "GREEN") &&
-                containsSpecificTrait(individual.getTraits(), "BULKY");
+        return !individual.isHumanoid() &&
+                ("Vogsphere".equals(individual.getPlanet()) || individual.getPlanet().equals("Unknown")) &&
+                (individual.getAge() <= 200 || individual.getAge() == 0) &&
+                (containsSpecificTrait(individual.getTraits(), "GREEN") ||
+                containsSpecificTrait(individual.getTraits(), "BULKY"));
     }
 }

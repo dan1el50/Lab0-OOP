@@ -1,23 +1,9 @@
 package oop.practice;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class LordOfTheRingsUniverse {
 
-    public List<Individuals> partOfLordOfTheRingsUniverse(List<Individuals> individuals) {
-        
-        List<Individuals> partOfLordOfTheRingsUniverse = new ArrayList<Individuals>();
-        for (Individuals individual : individuals){
-            if(isElf(individual)){
-                individual.setUniverse("Lord of the rings (Elf)");
-                partOfLordOfTheRingsUniverse.add(individual);
-            } else if (isDwarf(individual)) {
-                individual.setUniverse("Lord of the rings (Dwarf)");
-                partOfLordOfTheRingsUniverse.add(individual);
-            }
-        }
-        return partOfLordOfTheRingsUniverse;
+    public boolean partOfLordOfTheRingsUniverse(Individuals individual){
+        return isElf(individual) || isDwarf(individual);
     }
 
     public boolean containsSpecificTrait(String[] traits, String trait){
@@ -30,14 +16,19 @@ public class LordOfTheRingsUniverse {
     }
 
     public boolean isElf(Individuals individual) {
-        return individual.isHumanoid() && individual.getPlanet().equals("Earth") &&
-                individual.getAge() == 0 && containsSpecificTrait(individual.getTraits(), "BLONDE") &&
-                containsSpecificTrait(individual.getTraits(), "POINTY_EARS");
+        boolean hasTraits = individual.getTraits().length > 0;
+        return individual.isHumanoid() &&
+                ("Earth".equals(individual.getPlanet()) || individual.getPlanet().equals("Unknown")) &&
+                individual.getAge() >= 0 &&
+                (containsSpecificTrait(individual.getTraits(), "BLONDE") &&
+                containsSpecificTrait(individual.getTraits(), "POINTY_EARS") || !hasTraits);
     }
 
     public boolean isDwarf(Individuals individual) {
-        return individual.isHumanoid() && individual.getPlanet().equals("Earth") &&
-                individual.getAge() < 200 && containsSpecificTrait(individual.getTraits(), "SHORT") &&
-                containsSpecificTrait(individual.getTraits(), "BULKY");
+        return (individual.isHumanoid() || !individual.isHumanoid())&&
+                ("Earth".equals(individual.getPlanet()) || individual.getPlanet().equals("Unknown"))&&
+                (individual.getAge() < 200 || individual.getAge() == 0) &&
+                (containsSpecificTrait(individual.getTraits(), "SHORT") ||
+                containsSpecificTrait(individual.getTraits(), "BULKY"));
     }
 }

@@ -1,21 +1,9 @@
 package oop.practice;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class MarvelUniverse {
 
-    public List<Individuals> partOfMarvelUniverse(List<Individuals> individuals ) {
-        List<Individuals> partOfMarvelUniverse = new ArrayList<>();
-
-        for(Individuals individual : individuals) {
-            if(isAsgardian(individual)){
-                individual.setUniverse("Marvel Universe (Asgardian)");
-                partOfMarvelUniverse.add(individual);
-            }
-        }
-        return partOfMarvelUniverse;
+    public boolean partOfMarvelUniverse(Individuals individual){
+        return isAsgardian(individual);
     }
 
     public boolean containsSpecificTrait(String[] traits, String trait) {
@@ -28,9 +16,11 @@ public class MarvelUniverse {
     }
 
     public boolean isAsgardian(Individuals individual){
-        return individual.isHumanoid() && individual.getPlanet().equals("Asgard") &&
-                individual.getAge() <= 5000 && containsSpecificTrait(individual.getTraits(), "BLONDE") &&
-                containsSpecificTrait(individual.getTraits(), "TALL");
+        return individual.isHumanoid() &&
+                ("Asgard".equals(individual.getPlanet()) || individual.getPlanet().equals("Unknown"))&&
+                (individual.getAge() <= 5000 || individual.getAge() == 0) &&
+                (containsSpecificTrait(individual.getTraits(), "BLONDE") ||
+                containsSpecificTrait(individual.getTraits(), "TALL"));
     }
 
 

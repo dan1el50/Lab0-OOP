@@ -1,43 +1,38 @@
 package oop.practice;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class StarWarsUniverse {
 
-    public List<Individuals> partOfStarWars(List<Individuals> individuals) {
-        List<Individuals> partOfStarWars = new ArrayList<>();
-
-        for(Individuals individual : individuals) {
-            if (isWookie(individual)) {
-                individual.setUniverse("Star Wars Universe (Wookie)");
-                partOfStarWars.add(individual);
-            } else if (isEwok(individual)) {
-                individual.setUniverse("Star Wars Universe (Ewok)");
-                partOfStarWars.add(individual);
-            }
-        }
-        return partOfStarWars;
+    public boolean partOfStarWarsUniverse(Individuals individual) {
+        return isWookie(individual) || isEwok(individual);
     }
 
     private boolean containsSpecificTrait(String[] traits, String trait) {
-        for(String i : traits){
-            if(i.equals(trait)){
+        if (traits == null || traits.length == 0) {
+            return false; // Handle empty or null traits array
+        }
+        for (String i : traits) {
+            if (i.equals(trait)) {
                 return true;
             }
         }
-        return false;
+        return false; // Return false if trait is not found
     }
 
     private boolean isWookie(Individuals individual) {
-        return !individual.isHumanoid() && individual.getPlanet().equals("Kashyyyk") &&
-                individual.getAge() <= 400 && containsSpecificTrait(individual.getTraits(), "TALL") &&
-                containsSpecificTrait(individual.getTraits(), "HAIRY");
+        boolean hasTraits = individual.getTraits().length > 0;
+        return !individual.isHumanoid() &&
+                ("Kashyyyk".equals(individual.getPlanet()) || individual.getPlanet().equals("Unknown")) &&
+                (individual.getAge() <= 400 || individual.getAge() == 0) &&
+                (containsSpecificTrait(individual.getTraits(), "TALL") ||
+                containsSpecificTrait(individual.getTraits(), "HAIRY") || !hasTraits);
     }
 
     private boolean isEwok(Individuals individual) {
-        return !individual.isHumanoid() && individual.getPlanet().equals("Endor") &&
-        individual.getAge() <= 60 && containsSpecificTrait(individual.getTraits(), "SHORT") &&
-                containsSpecificTrait(individual.getTraits(), "HAIRY");
+        boolean hasTraits = individual.getTraits().length > 0;
+        return !individual.isHumanoid() &&
+                ("Endor".equals(individual.getPlanet()) || individual.getPlanet().equals("Unknown")) &&
+                (individual.getAge() <= 60 || individual.getAge() == 0)  &&
+                (containsSpecificTrait(individual.getTraits(), "SHORT") ||
+                containsSpecificTrait(individual.getTraits(), "HAIRY") || !hasTraits);
     }
 }

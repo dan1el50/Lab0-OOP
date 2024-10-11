@@ -19,10 +19,10 @@ public class FileReader{
             JsonNode dataNode = rootNode.path("data");
 
             for (JsonNode individualNode : dataNode) {
-                int id = individualNode.path("id").asInt();
-                Boolean isHumanoid = individualNode.path("isHumanoid").isMissingNode() ? null : individualNode.path("isHumanoid").asBoolean();
-                String planet = individualNode.path("planet").isMissingNode() ? null : individualNode.path("planet").asText();
-                Integer age = individualNode.path("age").isMissingNode() ? null : individualNode.path("age").asInt();
+                int id = individualNode.get("id").asInt();
+                Boolean isHumanoid = individualNode.has("isHumanoid") ? individualNode.get("isHumanoid").asBoolean() : false;
+                String planet = individualNode.has("planet") ? individualNode.get("planet").asText() : "Unknown";
+                Integer age = individualNode.has("age") ? individualNode.get("age").asInt() : 0;
                 String[] traits = new String[individualNode.path("traits").size()];
 
                 for (int i = 0; i < traits.length; i++) {
