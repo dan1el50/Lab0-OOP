@@ -1,6 +1,5 @@
 package oop.practice;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -12,30 +11,16 @@ public class Main {
     StarWars starWarsIndividuals = new StarWars();
     List<Individuals> classifiedAsStarWars = starWarsIndividuals.partOfStarWars(individuals);
 
-    System.out.println("Individuals from Earth: ");
-    for (Individuals individual : individuals){
-      if(individual.getPlanet().equals("Earth")){
-        individual.PrintIndividuals();
-      }
-    }
-
-    System.out.println("Individuals with age up to 500: ");
-    for (Individuals individual : individuals){
-      if (individual.getAge() <= 100){
-        individual.PrintIndividuals();
-      }
-    }
-
-    System.out.println("Individuals that are not humanoids and have the age up tp 100: ");
-    for (Individuals individual : individuals){
-      if (individual.getAge() <= 100 && !individual.isHumanoid()){
-        individual.PrintIndividuals();
-      }
-    }
-
+    MarvelUniverse marvelUniverseIndividuals = new MarvelUniverse();
+    List<Individuals> classifiedAsMarvel = marvelUniverseIndividuals.partOfMarvelUniverse(individuals);
     // Print classified individuals
-    System.out.println("Classified Star Wars Individuals: ");
+    System.out.println("Classified Star Wars Universe Individuals: ");
     for (Individuals individual : classifiedAsStarWars) {
+      individual.PrintIndividuals();
+    }
+
+    System.out.println("Classified Marvel Universe Individuals: ");
+    for (Individuals individual : classifiedAsMarvel) {
       individual.PrintIndividuals();
     }
   }
