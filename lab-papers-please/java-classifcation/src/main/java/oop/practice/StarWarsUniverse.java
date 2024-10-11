@@ -3,7 +3,7 @@ package oop.practice;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StarWars {
+public class StarWarsUniverse {
 
     public List<Individuals> partOfStarWars(List<Individuals> individuals) {
         List<Individuals> partOfStarWars = new ArrayList<>();

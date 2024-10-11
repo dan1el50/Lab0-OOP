@@ -30,7 +30,7 @@ public class HitchhikerUniverse {
     }
 
     public boolean isBetelgeusian(Individuals individual){
-        return individual.isHumanoid() && individual.getPlanet().equals("BETELGEUSE") &&
+        return individual.isHumanoid() && individual.getPlanet().equals("Betelgeuse") &&
                 individual.getAge() <= 100 && containsSpecificTrait(individual.getTraits(), "EXTRA_ARMS") &&
                 containsSpecificTrait(individual.getTraits(), "EXTRA_HEAD");
     }
