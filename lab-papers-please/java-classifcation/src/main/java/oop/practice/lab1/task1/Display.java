@@ -44,4 +44,9 @@ public class Display {
         compareSize(other);
         compareSharpness(other);
     }
+
+    @Override
+    public String toString() {
+        return "Display model: " + model + " width: " + width + " height: " + height + " ppi: " + ppi + "\n";
+    }
 }
