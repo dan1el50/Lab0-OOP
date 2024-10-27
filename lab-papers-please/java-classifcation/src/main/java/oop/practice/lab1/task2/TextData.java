@@ -60,7 +60,8 @@ public class TextData {
     public int getNumberOfSentences() {
         int count = 0;
         for (int i = 0; i < text.length(); i++){
-            if (String.valueOf(text.charAt(i)).equals(".")){
+            if (String.valueOf(text.charAt(i)).equals(".") || String.valueOf(text.charAt(i)).equals("?") ||
+                    String.valueOf(text.charAt(i)).equals("!")) {
                 count++;
             }
         }

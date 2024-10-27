@@ -20,7 +20,10 @@ public class MainTask3 {
         System.out.println("We will be choosing from the following displays: \n" + assistant.getAssignedDisplays());
         System.out.println("\nBelow you can see the comparison of each screen.");
         assistant.assist();
-        System.out.println("\nThank you " + assistant.getAssistantName() + " for helping me. \nI will choose " +
+        System.out.println("\nThank you " + assistant.getAssistantName() + " for helping me. \nI will choose the " +
+                "following display:\n" +
                 assistant.buyDisplay(display1));
+        System.out.println("\nRemaining models after buying a display: ");
+        System.out.println(assistant.getAssignedDisplays());
     }
 }

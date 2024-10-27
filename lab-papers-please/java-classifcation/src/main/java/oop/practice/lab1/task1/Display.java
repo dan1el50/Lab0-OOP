@@ -47,6 +47,6 @@ public class Display {
 
     @Override
     public String toString() {
-        return "Display model: " + model + " width: " + width + " height: " + height + " ppi: " + ppi + "\n";
+        return "Display model: " + model + " width: " + width + " height: " + height + " ppi: " + ppi;
     }
 }
