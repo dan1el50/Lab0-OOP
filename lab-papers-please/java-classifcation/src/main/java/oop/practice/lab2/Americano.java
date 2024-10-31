@@ -7,4 +7,10 @@ public class Americano extends Coffee{
         super(coffeeIntensity, "Americano");
         this.mlOfWater = mlOfWater;
     }
+
+    @Override
+    public void printCoffeeDetails(){
+        super.printCoffeeDetails();
+        System.out.println(name + " Water: " + mlOfWater + "mg");
+    }
 }

@@ -7,4 +7,10 @@ public class SyrupCappuccino extends Cappuccino {
         super(coffeeIntensity, mlOfMilk, "SyrupCappuccino");
         this.syrup = syrup;
     }
+
+    @Override
+    public void printCoffeeDetails(){
+        super.printCoffeeDetails();
+        System.out.println("Cappuccino syrup name: " + syrup);
+    }
 }
