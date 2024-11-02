@@ -8,15 +8,14 @@ public class Main {
         Americano americano = new Americano(Intensity.STRONG, 50);
         PumpkinSpiceLatte pumpkinSpiceLatte = new PumpkinSpiceLatte(Intensity.NORMAL, 15, 100);
 
-        coffee.printCoffeeDetails();
+        coffee.makeCoffee();
         System.out.println();
-        cappuccino.printCoffeeDetails();
+        cappuccino.makeCappuccino();
         System.out.println();
-        syrupCappuccino.printCoffeeDetails();
+        syrupCappuccino.makeSyrupCappuccino();
         System.out.println();
-        americano.printCoffeeDetails();
+        americano.makeAmericano();
         System.out.println();
-        pumpkinSpiceLatte.printCoffeeDetails();
-
+        pumpkinSpiceLatte.makePumpkinSpiceLatte();
     }
 }

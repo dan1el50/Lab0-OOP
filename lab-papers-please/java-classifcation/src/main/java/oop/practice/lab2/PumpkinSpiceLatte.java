@@ -1,17 +1,15 @@
 package oop.practice.lab2;
 
 public class PumpkinSpiceLatte extends Cappuccino{
-    private int mlOfPumpkinLatte;
+    private final int mlOfPumpkinLatte;
 
     public PumpkinSpiceLatte(Intensity coffeeIntensity, int mlOfPumpkinLatte, int mlOfMilk) {
         super(coffeeIntensity, mlOfMilk, "PumpkinSpiceLatte");
         this.mlOfPumpkinLatte = mlOfPumpkinLatte;
     }
 
-
-    @Override
-    public void printCoffeeDetails(){
-        super.printCoffeeDetails();
-        System.out.println("PumpkinLatte: " + mlOfPumpkinLatte + "mg");
+    public void makePumpkinSpiceLatte(){
+        super.makeCappuccino();
+        System.out.println("Adding " + mlOfPumpkinLatte + " ml of pumpkin spice");
     }
 }

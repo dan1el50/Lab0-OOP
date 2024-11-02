@@ -14,24 +14,12 @@ public class Coffee {
         this.name = name;
     }
 
-    public void printCoffeeDetails(){
-        System.out.println("Coffee Name: " + name);
-        System.out.println("Coffee Intensity: " + coffeeIntensity);
-    }
-
-    public Intensity getCoffeeIntensity() {
-        return coffeeIntensity;
-    }
-
-    public void setCoffeeIntensity(Intensity coffeeIntensity) {
-        this.coffeeIntensity = coffeeIntensity;
+    public void makeCoffee(){
+        System.out.println("Making " + name);
+        System.out.println("Intensity set to " + coffeeIntensity);
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }
