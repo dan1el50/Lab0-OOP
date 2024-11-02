@@ -1,6 +1,6 @@
-package oop.practice.lab2;
+package oop.practice.lab2.task1_2_3;
 
-public class Americano extends Coffee{
+class Americano extends Coffee{
     private final int mlOfWater;
 
     public Americano(Intensity coffeeIntensity, int mlOfWater) {
@@ -11,5 +11,13 @@ public class Americano extends Coffee{
     public void makeAmericano(){
         super.makeCoffee();
         System.out.println("Adding " + mlOfWater + " ml of water");
+    }
+
+    public static int getMlOfWater(Intensity coffeeIntensity) {
+        return switch (coffeeIntensity) {
+            case LIGHT -> 100;
+            case NORMAL -> 50;
+            case STRONG -> 25;
+        };
     }
 }

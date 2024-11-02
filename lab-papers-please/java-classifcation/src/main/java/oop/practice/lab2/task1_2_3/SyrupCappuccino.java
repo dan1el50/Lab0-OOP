@@ -1,6 +1,6 @@
-package oop.practice.lab2;
+package oop.practice.lab2.task1_2_3;
 
-public class SyrupCappuccino extends Cappuccino {
+class SyrupCappuccino extends Cappuccino {
     private final SyrupType syrup;
 
     public SyrupCappuccino(Intensity coffeeIntensity, int mlOfMilk,  SyrupType syrup) {

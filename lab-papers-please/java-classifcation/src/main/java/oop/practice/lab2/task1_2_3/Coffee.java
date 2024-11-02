@@ -1,6 +1,6 @@
-package oop.practice.lab2;
+package oop.practice.lab2.task1_2_3;
 
-public class Coffee {
+class Coffee {
     protected Intensity coffeeIntensity;
     protected String name;
 
