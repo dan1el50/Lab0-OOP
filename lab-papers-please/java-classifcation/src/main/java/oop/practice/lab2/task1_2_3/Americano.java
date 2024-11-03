@@ -8,6 +8,12 @@ class Americano extends Coffee{
         this.mlOfWater = mlOfWater;
     }
 
+    @Override
+    public void printCoffeeDetails(){
+        super.printCoffeeDetails();
+        System.out.println("Ml of Water: " + mlOfWater);
+    }
+
     public void makeAmericano(){
         super.makeCoffee();
         System.out.println("Adding " + mlOfWater + " ml of water");

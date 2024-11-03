@@ -8,8 +8,14 @@ class SyrupCappuccino extends Cappuccino {
         this.syrup = syrup;
     }
 
+    @Override
+    public void printCoffeeDetails(){
+        super.printCoffeeDetails();
+        System.out.println("Syrup: " + syrup);
+    }
+
     public void makeSyrupCappuccino(){
         super.makeCappuccino();
-        System.out.println("Adding " + syrup + "syrup");
+        System.out.println("Adding " + syrup + " syrup");
     }
 }

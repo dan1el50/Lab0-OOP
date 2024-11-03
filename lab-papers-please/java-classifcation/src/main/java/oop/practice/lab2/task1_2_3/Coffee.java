@@ -14,6 +14,10 @@ class Coffee {
         this.name = name;
     }
 
+    public void printCoffeeDetails(){
+        System.out.println("Coffee intensity: " + coffeeIntensity);
+    }
+
     public void makeCoffee(){
         System.out.println("Making " + name);
         System.out.println("Intensity set to " + coffeeIntensity);

@@ -8,6 +8,12 @@ class PumpkinSpiceLatte extends Cappuccino {
         this.mlOfPumpkinSpice = mlOfPumpkinSpice;
     }
 
+    @Override
+    public void printCoffeeDetails(){
+        super.printCoffeeDetails();
+        System.out.println("Ml of Pumpkin Spice: " + mlOfPumpkinSpice);
+    }
+
     public void makePumpkinSpiceLatte() {
         super.makeCappuccino();
         System.out.println("Adding " + mlOfPumpkinSpice + " ml of pumpkin spice");
