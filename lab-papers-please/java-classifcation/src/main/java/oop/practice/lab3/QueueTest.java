@@ -42,7 +42,7 @@ public class QueueTest {
 
     @Test
     public void testPriorityQueue() {
-        Queue<Integer> queue = new PriorityQueueImpl<>();
+        Queue<Integer> queue = new DequeQueue<>();
         Integer[] testData = {30, 10, 20};
 
         // Enqueue elements

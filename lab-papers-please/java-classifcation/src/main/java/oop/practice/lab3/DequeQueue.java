@@ -1,13 +1,13 @@
 package oop.practice.lab3;
 
-import java.util.PriorityQueue;
+import java.util.ArrayDeque;
 
-public class PriorityQueueImpl<T extends Comparable<T>> implements Queue<T> {
-    private PriorityQueue<T> elements = new PriorityQueue<>();
+public class DequeQueue<T> implements Queue<T> {
+    private final ArrayDeque<T> deque = new ArrayDeque<>();
 
     @Override
     public void enqueue(T element) {
-        elements.add(element);
+        deque.addLast(element);
     }
 
     @Override
@@ -15,7 +15,7 @@ public class PriorityQueueImpl<T extends Comparable<T>> implements Queue<T> {
         if (isEmpty()) {
             throw new IllegalStateException("Queue is empty");
         }
-        return elements.poll();
+        return deque.removeFirst();
     }
 
     @Override
@@ -23,16 +23,16 @@ public class PriorityQueueImpl<T extends Comparable<T>> implements Queue<T> {
         if (isEmpty()) {
             throw new IllegalStateException("Queue is empty");
         }
-        return elements.peek();
+        return deque.peekFirst();
     }
 
     @Override
     public boolean isEmpty() {
-        return elements.isEmpty();
+        return deque.isEmpty();
     }
 
     @Override
     public int size() {
-        return elements.size();
+        return deque.size();
     }
 }
