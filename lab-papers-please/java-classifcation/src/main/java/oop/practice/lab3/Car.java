@@ -34,5 +34,12 @@ public class Car {
     public double getConsumption() {
         return consumption;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Car{id=%d, type=%s, passengers=%s, isDining=%b, consumption=%.2f}",
+                id, type, passengers, isDining, consumption);
+    }
+
 }
 

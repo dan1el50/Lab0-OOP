@@ -5,31 +5,77 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class Test2 {
 
-
     @Test
-    public void testIntegrationScenario() {
-        // A scenario that combines all services
+    public void test() {
+        // Electric Station Test
         ElectricStation electricStation = new ElectricStation();
-        GasStation gasStation = new GasStation();
-        PeopleDinner peopleDinner = new PeopleDinner();
-        RobotDinner robotDinner = new RobotDinner();
-
-        // Serving electric cars
         electricStation.refuel(1);
         electricStation.refuel(2);
+        assertEquals(2, electricStation.getElectricCarsServed(), "Electric cars served count should be 2");
 
-        // Serving gas cars
+        // Gas Station Test
+        GasStation gasStation = new GasStation();
         gasStation.refuel(3);
         gasStation.refuel(4);
+        gasStation.refuel(5);
+        assertEquals(3, gasStation.getGasCarsServed(), "Gas cars served count should be 3");
 
-        // Serving dinner
-        peopleDinner.serveDinner(2); // People dine
-        robotDinner.serveDinner(5); // Robots dine
+        // People Dinner Test
+        PeopleDinner peopleDinner = new PeopleDinner();
+        peopleDinner.serveDinner(6);
+        peopleDinner.serveDinner(7);
+        assertEquals(2, peopleDinner.getPeopleServed(), "People served count should be 2");
 
-        // Verify counts
-        assertEquals(2, electricStation.getElectricCarsServed(), "Electric cars served count should be 2");
-        assertEquals(2, gasStation.getGasCarsServed(), "Gas cars served count should be 2");
-        assertEquals(1, peopleDinner.getPeopleServed(), "People served count should be 1");
-        assertEquals(1, robotDinner.getRobotsServed(), "Robots served count should be 1");
+        // Optional: Uncomment if skip logic is implemented
+        // peopleDinner.skipDinner();
+        // assertEquals(1, peopleDinner.getPeopleSkipped(), "People skipped count should be 1");
+
+        // Robot Dinner Test
+        RobotDinner robotDinner = new RobotDinner();
+        robotDinner.serveDinner(8);
+        robotDinner.serveDinner(9);
+        assertEquals(2, robotDinner.getRobotsServed(), "Robots served count should be 2");
+
+        // Optional: Uncomment if skip logic is implemented
+        // robotDinner.skipDinner();
+        // assertEquals(1, robotDinner.getRobotsSkipped(), "Robots skipped count should be 1");
+
+        // Edge Cases
+        // Test invalid car IDs and ensure proper exception handling
+        try {
+            electricStation.refuel(-1); // Simulate invalid car ID
+            fail("Invalid car ID should throw an IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            // Expected, do nothing
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e.getMessage());
+        }
+
+        try {
+            gasStation.refuel(0); // Simulate invalid car ID
+            fail("Invalid car ID should throw an IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            // Expected, do nothing
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e.getMessage());
+        }
+
+        try {
+            peopleDinner.serveDinner(-100); // Simulate invalid car ID
+            fail("Invalid car ID should throw an IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            // Expected, do nothing
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e.getMessage());
+        }
+
+        try {
+            robotDinner.serveDinner(-200); // Simulate invalid car ID
+            fail("Invalid car ID should throw an IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            // Expected, do nothing
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e.getMessage());
+        }
     }
 }

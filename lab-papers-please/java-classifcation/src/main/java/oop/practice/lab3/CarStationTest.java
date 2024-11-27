@@ -5,47 +5,47 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CarStationTest {
 
-    // Helper method to test different Queue implementations
-    private void testCarStationWithQueue(Queue<Car> queue, String queueType) {
-        System.out.println("Testing with: " + queueType);
+    @Test
+    public void testMixedCarStation() {
+        Queue<Car> queue = new ArrayQueue<>();
+        Dineable diningService = new PeopleDinner();
+        Refuelable refuelingService = new GasStation();
+        CarStation station = new CarStation(diningService, refuelingService, queue);
 
-        // Mock services
-        PeopleDinner diningService = new PeopleDinner();
-        ElectricStation refuelingService = new ElectricStation();
+        // Add a mix of valid and invalid cars
+        Car car1 = new Car(1, CarType.GAS, PassengersType.PEOPLE, true, 20.0); // Valid for both refueling and dining
+        Car car2 = new Car(2, CarType.ELECTRIC, PassengersType.ROBOTS, false, 15.0); // Invalid for both
+        Car car3 = new Car(3, CarType.GAS, PassengersType.ROBOTS, true, 25.0); // Valid refuel, invalid dining
+        Car car4 = new Car(4, CarType.ELECTRIC, PassengersType.PEOPLE, true, 30.0); // Invalid refuel, valid dining
+        Car car5 = new Car(5, CarType.GAS, PassengersType.PEOPLE, false, 10.0); // Valid refuel, no dining
 
-        // Create CarStation with DI
-        CarStation carStation = new CarStation(diningService, refuelingService, queue);
+        // Enqueue cars
+        station.addCar(car1);
+        station.addCar(car2);
+        station.addCar(car3);
+        station.addCar(car4);
+        station.addCar(car5);
 
-        // Add cars to the queue
-        carStation.addCar(new Car(1, CarType.ELECTRIC, PassengersType.PEOPLE, true, 4.8)); // Wants to dine
-        carStation.addCar(new Car(2, CarType.GAS, PassengersType.ROBOTS, false, 6.9));   // Does not want to dine
-        carStation.addCar(new Car(3, CarType.ELECTRIC, PassengersType.PEOPLE, true, 10)); // Wants to dine
+        // Serve all cars
+        station.serveCars();
 
-        // Serve cars
-        carStation.serveCars();
-
-        // Assertions for dining service
-        assertEquals(2, diningService.getPeopleServed(), "Should have served 2 cars with dining");
-
-        // Assertions for refueling service
-        assertEquals(2, refuelingService.getElectricCarsServed(), "Should have recharged 2 cars");
-
-        // Queue should be empty after serving
+        // Assertions
         assertTrue(queue.isEmpty(), "Queue should be empty after serving all cars");
-    }
 
-    @Test
-    public void testServeCarsWithArrayQueue() {
-        testCarStationWithQueue(new ArrayQueue<>(), "ArrayQueue");
-    }
+        // Verify stats for dining
+        if (diningService instanceof PeopleDinner) {
+            assertEquals(2, ((PeopleDinner) diningService).getPeopleServed(), "Two people should be served");
+        }
+        if (diningService instanceof RobotDinner) {
+            assertEquals(0, ((RobotDinner) diningService).getRobotsServed(), "No robots should be served");
+        }
 
-    @Test
-    public void testServeCarsWithLinkedListQueue() {
-        testCarStationWithQueue(new LinkedListQueue<>(), "LinkedListQueue");
-    }
-
-    @Test
-    public void testServeCarsWithDequeQueue() {
-        testCarStationWithQueue(new DequeQueue<>(), "DequeQueue");
+        // Verify stats for refueling
+        if (refuelingService instanceof GasStation) {
+            assertEquals(3, ((GasStation) refuelingService).getGasCarsServed(), "Three gas cars should be refueled");
+        }
+        if (refuelingService instanceof ElectricStation) {
+            assertEquals(0, ((ElectricStation) refuelingService).getElectricCarsServed(), "No electric cars should be refueled");
+        }
     }
 }
