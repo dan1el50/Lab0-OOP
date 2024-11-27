@@ -5,14 +5,9 @@ public class RobotDinner implements Dineable {
     private int robotsSkipped = 0; // Tracks cars that did not want to dine
 
     @Override
-    public void serveDinner(String carId) {
-        if (carId.startsWith("Dine")) {
+    public void serveDinner(int carId) {
             System.out.println("Serving dinner to robots in car " + carId);
             robotsServed++;
-        } else {
-            System.out.println("Skipping dinner for car " + carId);
-            robotsSkipped++;
-        }
     }
 
     public int getRobotsServed() {

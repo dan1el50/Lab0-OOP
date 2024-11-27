@@ -15,7 +15,7 @@ public class ArrayQueue<T> implements Queue<T> {
         if (isEmpty()) {
             throw new IllegalStateException("Queue is empty");
         }
-        return elements.removeFirst();
+        return elements.remove(0);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class ArrayQueue<T> implements Queue<T> {
         if (isEmpty()) {
             throw new IllegalStateException("Queue is empty");
         }
-        return elements.getFirst();
+        return elements.get(0);
     }
 
     @Override
