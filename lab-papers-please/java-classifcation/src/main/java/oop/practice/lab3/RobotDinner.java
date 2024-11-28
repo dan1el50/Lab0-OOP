@@ -2,17 +2,24 @@ package oop.practice.lab3;
 
 public class RobotDinner implements Dineable {
     private int robotsServed = 0;
+    private int robotsSkipped = 0;
 
     @Override
-    public void serveDinner(int carId) {
-        if (carId <= 0) {
-            throw new IllegalArgumentException("Car ID must be positive.");
+    public void serveDinner(Car car) {
+        if (car.isDining()) {
+            System.out.println("Serving dinner to robots in car " + car.getId());
+            robotsServed++; // Increment served count
+        } else {
+            System.out.println("Skipping dinner for robots in car " + car.getId());
+            robotsSkipped++; // Increment skipped count
         }
-        System.out.println("Serving dinner to robots in car " + carId);
-        robotsServed++;
     }
 
     public int getRobotsServed() {
         return robotsServed;
+    }
+
+    public int getRobotsSkipped() {
+        return robotsSkipped;
     }
 }
