@@ -40,37 +40,4 @@ public class CarSummary {
                         "\"CONSUMPTION\": {\"ELECTRIC\": %.0f, \"GAS\": %.0f}}",
                 electricCars, gasCars, peopleCars, robotsCars, diningCars, notDiningCars, electricConsumption, gasConsumption);
     }
-
-    // Getters for statistics
-    public int getElectricCars() {
-        return electricCars;
-    }
-
-    public int getGasCars() {
-        return gasCars;
-    }
-
-    public int getPeopleCars() {
-        return peopleCars;
-    }
-
-    public int getRobotsCars() {
-        return robotsCars;
-    }
-
-    public int getDiningCars() {
-        return diningCars;
-    }
-
-    public int getNotDiningCars() {
-        return notDiningCars;
-    }
-
-    public double getElectricConsumption() {
-        return electricConsumption;
-    }
-
-    public double getGasConsumption() {
-        return gasConsumption;
-    }
 }

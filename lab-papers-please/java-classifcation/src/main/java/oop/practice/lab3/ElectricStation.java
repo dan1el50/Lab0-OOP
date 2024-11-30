@@ -12,7 +12,4 @@ public class ElectricStation implements Refuelable {
         electricCarsServed++;
     }
 
-    public int getElectricCarsServed() {
-        return electricCarsServed;
-    }
 }

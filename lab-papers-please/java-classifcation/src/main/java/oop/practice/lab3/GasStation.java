@@ -11,8 +11,4 @@ public class GasStation implements Refuelable {
         System.out.println("Refueling gas car " + carId);
         gasCarsServed++;
     }
-
-    public int getGasCarsServed() {
-        return gasCarsServed;
-    }
 }

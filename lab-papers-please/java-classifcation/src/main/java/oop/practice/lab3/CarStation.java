@@ -18,13 +18,14 @@ public class CarStation {
             throw new IllegalArgumentException("Car cannot be null.");
         }
         queue.enqueue(car);
-        System.out.println("Car \"" + car.getId() + "\" added to the queue");
+        //System.out.println("Car " + car.getId() + " added to the queue");
     }
 
     public void serveCars() {
         while (!queue.isEmpty()) {
             Car car = queue.dequeue();
-            System.out.println("Served car \"" + car.getId() + "\"");
+            System.out.println();
+            System.out.println("Served car " + car.getId());
 
             serveRefueling(car);
             serveDining(car);
@@ -42,9 +43,6 @@ public class CarStation {
         diningService.serveDinner(car); // Dining handled in the respective service
     }
 
-    public Queue<Car> getQueue() {
-        return queue;
-    }
     public Refuelable getRefuelingService() {
         return refuelingService;
     }

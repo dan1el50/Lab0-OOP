@@ -34,8 +34,5 @@ public class Main {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        // After serving all cars, print the final summary
-        System.out.println(carSummary.toJson());
     }
 }

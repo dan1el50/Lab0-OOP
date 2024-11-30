@@ -14,12 +14,4 @@ public class RobotDinner implements Dineable {
             robotsSkipped++; // Increment skipped count
         }
     }
-
-    public int getRobotsServed() {
-        return robotsServed;
-    }
-
-    public int getRobotsSkipped() {
-        return robotsSkipped;
-    }
 }

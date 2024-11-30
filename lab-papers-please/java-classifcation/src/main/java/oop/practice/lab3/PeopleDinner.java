@@ -14,12 +14,4 @@ public class PeopleDinner implements Dineable {
             peopleSkipped++; // Increment skipped count
         }
     }
-
-    public int getPeopleServed() {
-        return peopleServed;
-    }
-
-    public int getPeopleSkipped() {
-        return peopleSkipped;
-    }
 }

@@ -58,6 +58,7 @@ public class Scheduler {
                 //System.out.println("No new cars in the last 5 seconds. Stopping...");
                 printSummary();
                 executor.shutdown();  // Stop the executor
+                System.exit(0);
             }
         }, 0, 1, TimeUnit.SECONDS);
     }
