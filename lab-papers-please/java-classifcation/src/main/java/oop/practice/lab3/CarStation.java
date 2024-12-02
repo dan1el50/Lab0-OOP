@@ -18,7 +18,6 @@ public class CarStation {
             throw new IllegalArgumentException("Car cannot be null.");
         }
         queue.enqueue(car);
-        //System.out.println("Car " + car.getId() + " added to the queue");
     }
 
     public void serveCars() {
@@ -45,5 +44,9 @@ public class CarStation {
 
     public Refuelable getRefuelingService() {
         return refuelingService;
+    }
+
+    public Dineable getDiningService() {
+        return diningService;
     }
 }

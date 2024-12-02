@@ -7,18 +7,26 @@ public class Main {
     public static void main(String[] args) {
         CarSummary carSummary = new CarSummary(); // Create a CarSummary instance
 
-        Queue<Car> gasQueue = new ArrayQueue<>();
-        Queue<Car> electricQueue = new ArrayQueue<>();
+        Queue<Car> gasQueueForPeople = new ArrayQueue<>();
+        Queue<Car> gasQueueForRobots = new ArrayQueue<>();
+        Queue<Car> electricQueueForPeople = new ArrayQueue<>();
+        Queue<Car> electricQueueForRobots = new ArrayQueue<>();
+
 
         GasStation gasStation = new GasStation();
         ElectricStation electricStation = new ElectricStation();
 
-        CarStation gasStationHandler = new CarStation(new PeopleDinner(), gasStation, gasQueue, carSummary);
-        CarStation electricStationHandler = new CarStation(new RobotDinner(), electricStation, electricQueue, carSummary);
+        // Create the 4 stations
+        CarStation gasStationWithPeople = new CarStation(new PeopleDinner(), gasStation, gasQueueForPeople, carSummary);
+        CarStation gasStationWithRobots = new CarStation(new RobotDinner(), gasStation, gasQueueForRobots, carSummary);
+        CarStation electricStationWithPeople = new CarStation(new PeopleDinner(), electricStation, electricQueueForPeople, carSummary);
+        CarStation electricStationWithRobots = new CarStation(new RobotDinner(), electricStation, electricQueueForRobots, carSummary);
 
         List<CarStation> stations = new ArrayList<>();
-        stations.add(gasStationHandler);
-        stations.add(electricStationHandler);
+        stations.add(gasStationWithPeople);
+        stations.add(gasStationWithRobots);
+        stations.add(electricStationWithPeople);
+        stations.add(electricStationWithRobots);
 
         Semaphore semaphore = new Semaphore(stations);
 

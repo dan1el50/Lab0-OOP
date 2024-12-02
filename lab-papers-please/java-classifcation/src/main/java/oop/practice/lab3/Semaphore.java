@@ -14,14 +14,13 @@ public class Semaphore {
 
     public void routeCar(Car car) {
         for (CarStation station : stations) {
-            if (canRefuelAtStation(station, car)) {
+            if (canRefuelAtStation(station, car) && canServePassengersAtStation(station, car)) {
                 station.addCar(car);
-                //System.out.println("Car " + car + " routed to station.");
                 return;
             }
         }
 
-        // If no station matched for refueling, route to the first available station
+        // If no station matched, route to the first station as fallback
         System.out.println("No exact match found for car " + car + ". Routing to default station.");
         stations.get(0).addCar(car);
     }
@@ -30,6 +29,15 @@ public class Semaphore {
         if (car.getType() == CarType.GAS && station.getRefuelingService() instanceof GasStation) {
             return true;
         } else if (car.getType() == CarType.ELECTRIC && station.getRefuelingService() instanceof ElectricStation) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean canServePassengersAtStation(CarStation station, Car car) {
+        if (car.getPassengers() == PassengersType.PEOPLE && station.getDiningService() instanceof PeopleDinner) {
+            return true;
+        } else if (car.getPassengers() == PassengersType.ROBOTS && station.getDiningService() instanceof RobotDinner) {
             return true;
         }
         return false;
